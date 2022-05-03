@@ -20,26 +20,26 @@ const App = function AppWrapper() {
   }, [getBalance]);
 
   return (
-    <>
+    <div style={{ backgroundColor: "black", height: "100vh" }}>
       <Notification />
-        <Container fluid="md">
-          <Nav className="justify-content-end pt-3 pb-5">
-            <Nav.Item>
-              {account.accountId ? (
-                <Wallet
-                  address={account.accountId}
-                  amount={balance}
-                  symbol="NEAR"
-                  destroy={destroy}
-                />
-              ) : (
-                <LoginButton login={login} />
-              )}
-            </Nav.Item>
-          </Nav>
-          <main>{<Cocktails />}</main>
-        </Container>
-    </>
+      <Container fluid="md">
+        <Nav className="justify-content-end pt-3 pb-5">
+          <Nav.Item>
+            {account.accountId ? (
+              <Wallet
+                address={account.accountId}
+                amount={balance}
+                symbol="NEAR"
+                destroy={destroy}
+              />
+            ) : (
+              <LoginButton login={login} />
+            )}
+          </Nav.Item>
+        </Nav>
+        <main>{<Cocktails />}</main>
+      </Container>
+    </div>
   );
 };
 

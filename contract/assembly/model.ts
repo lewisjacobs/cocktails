@@ -28,4 +28,14 @@ export class Cocktail {
     }
 }
 
+@nearBindgen
+export class PartialCocktail {
+    id: string;
+    name: string|null;
+    ingredients: string|null;
+    decoration: string|null;
+    recipe: string|null;
+    image: string|null;
+}
+
 export const listedCocktails = new PersistentUnorderedMap<string, Cocktail>("LISTED_COCKTAILS");
