@@ -3,13 +3,12 @@ import PropTypes from "prop-types";
 import { utils } from "near-api-js";
 import { Card, Button, Col, Badge, Stack } from "react-bootstrap";
 
-const Cocktail = ({ Cocktail, make }) => {
+const Cocktail = ({ cocktail, buy }) => {
   const account = window.walletConnection.account();
-  const { id, price, name, ingredients, decoration, recipe, made, image } =
-    Cocktail;
+  const { id, price, name, ingredients, decoration, recipe, sold, image } = cocktail;
 
-  const triggerMake = () => {
-    make(id, price);
+  const triggerBuy = () => {
+    buy(id, price);
   };
 
   return (
@@ -17,9 +16,9 @@ const Cocktail = ({ Cocktail, make }) => {
       <Card className=" h-100">
         <Card.Header>
           <Stack direction="horizontal" gap={2}>
-            <span className="text-secondary">{name}</span>
+            <span className="text-secondary h5" style={{ marginBottom: "2px" }}>{name}</span>
             <Badge bg="secondary" className="ms-auto">
-              Made {made} time{ made === 1 ? "" : "s" }
+              Sold {sold} time{ sold === 1 ? "" : "s" }
             </Badge>
           </Stack>
         </Card.Header>
@@ -40,10 +39,10 @@ const Cocktail = ({ Cocktail, make }) => {
           {account.accountId ? 
             <Button
               variant="outline-dark"
-              onClick={triggerMake}
+              onClick={triggerBuy}
               className="w-100 py-3"
             >
-              Make for {utils.format.formatNearAmount(price)} NEAR
+              Buy for {utils.format.formatNearAmount(price)} NEAR
             </Button>
             : 
             null

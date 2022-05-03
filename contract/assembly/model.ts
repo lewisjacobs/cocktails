@@ -10,7 +10,7 @@ export class Cocktail {
     image: string;
     price: u128;
     owner: string;
-    made: u32;
+    sold: u32;
     public static fromPayload(payload: Cocktail): Cocktail {
         const cocktail = new Cocktail();
         cocktail.id = payload.id;
@@ -23,8 +23,8 @@ export class Cocktail {
         cocktail.owner = context.sender;
         return cocktail;
     }
-    public incrementMadeAmount(): void {
-        this.made = this.made + 1;
+    public incrementSoldAmount(): void {
+        this.sold = this.sold + 1;
     }
 }
 

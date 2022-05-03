@@ -18,7 +18,7 @@ export async function initializeContract() {
         nearEnv.contractName,
         {
             viewMethods: ["getCocktail", "getCocktails"],
-            changeMethods: ["makeCocktail", "setCocktail", "deleteCocktail"],
+            changeMethods: ["buyCocktail", "setCocktail", "deleteCocktail"],
         }
     );
 }

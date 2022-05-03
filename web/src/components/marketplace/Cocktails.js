@@ -7,13 +7,13 @@ import { Row } from "react-bootstrap";
 import { NotificationSuccess, NotificationError } from "../utils/Notifications";
 import {
   getCocktails as getCocktailList,
-  makeCocktail,
+  buyCocktail,
   createCocktail,
 } from "../../utils/marketplace";
 
 const Cocktails = () => {
     const account = window.walletConnection.account();
-    const [Cocktails, setCocktails] = useState([]);
+    const [cocktails, setCocktails] = useState([]);
     const [loading, setLoading] = useState(false);
   
     const getCocktails = useCallback(async () => {
@@ -42,9 +42,9 @@ const addCocktail = async (data) => {
     }
 };
 
-    const make = async (id, price) => {
+    const buy = async (id, price) => {
     try {
-        await makeCocktail({
+        await buyCocktail({
             id,
             price,
         }).then((resp) => getCocktails());
@@ -73,12 +73,12 @@ const addCocktail = async (data) => {
             }
             </div>
             <Row xs={1} sm={2} lg={3} className="g-3  mb-5 g-xl-4 g-xxl-5">
-            {Cocktails.map((_Cocktail) => (
+            {cocktails.map((_cocktail) => (
                 <Cocktail
-                    Cocktail={{
-                        ..._Cocktail,
+                    cocktail={{
+                        ..._cocktail,
                     }}
-                    make={make}
+                    buy={buy}
                 />
             ))}
             </Row>

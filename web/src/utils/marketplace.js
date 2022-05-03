@@ -13,8 +13,8 @@ export function getCocktails() {
   return window.contract.getCocktails();
 }
 
-export async function makeCocktail({ id, price }) {
-  await window.contract.makeCocktail({ cocktailId: id }, GAS, price);
+export async function buyCocktail({ id, price }) {
+  await window.contract.buyCocktail({ cocktailId: id }, GAS, price);
 }
 
 export function deleteCocktail({ id }) {

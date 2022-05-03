@@ -13,7 +13,7 @@ export function getCocktails(): Cocktail[] {
     return listedCocktails.values();
 }
 
-export function makeCocktail(cocktailId: string): void {
+export function buyCocktail(cocktailId: string): void {
     const cocktail = getCocktail(cocktailId);
     if (cocktail == null) {
         throw new Error("cocktail not found");
@@ -22,7 +22,7 @@ export function makeCocktail(cocktailId: string): void {
         throw new Error("attached deposit should equal to the cocktail's price");
     }
     ContractPromiseBatch.create(cocktail.owner).transfer(context.attachedDeposit);
-    cocktail.incrementMadeAmount();
+    cocktail.incrementSoldAmount();
     listedCocktails.set(cocktail.id, cocktail);
 }
 
