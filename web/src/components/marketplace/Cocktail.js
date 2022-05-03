@@ -19,7 +19,7 @@ const Cocktail = ({ cocktail, buy }) => {
           <Stack direction="horizontal" gap={2}>
             <span className="text-light h6" style={{ marginBottom: "2px" }}>{name}</span>
             <Badge bg="secondary" className="ms-auto">
-              Sold {sold} time{ sold === 1 ? "" : "s" }
+              {sold} sold
             </Badge>
           </Stack>
         </Card.Header>
@@ -30,16 +30,16 @@ const Cocktail = ({ cocktail, buy }) => {
           {
             expanded && 
             <>
-              <Card.Text className="flex-grow-1 text-light h6">Ingredients</Card.Text>
+              <Card.Text className="flex-grow-1 text-light h5">Ingredients</Card.Text>
               {
-                ingredients?.split("\n").map((i) => <Card.Text className="flex-grow-1 text-light" style={{ marginBottom: "0px" }}>{i}</Card.Text>)
+                ingredients?.split("\n").map((i) => <Card.Text className="flex-grow-1 text-light small" style={{ marginBottom: "0px" }}>{i}</Card.Text>)
               }
-              <Card.Text className="flex-grow-1 text-light h6" style={{ marginTop: "10px" }}>Decoration</Card.Text>
+              <Card.Text className="flex-grow-1 text-light h5" style={{ marginTop: "10px" }}>Decoration</Card.Text>
               {
-                decoration?.split("\n").map((d) => <Card.Text className="flex-grow-1 text-light" style={{ marginBottom: "0px" }}>{d}</Card.Text>)
+                decoration?.split("\n").map((d) => <Card.Text className="flex-grow-1 text-light small" style={{ marginBottom: "0px" }}>{d}</Card.Text>)
               }
-              <Card.Text className="flex-grow-1 text-light h6" style={{ marginTop: "10px" }}>Recipe</Card.Text>
-              <Card.Text className="flex-grow-1 text-light">{recipe}</Card.Text>
+              <Card.Text className="flex-grow-1 text-light h5" style={{ marginTop: "10px" }}>Recipe</Card.Text>
+              <Card.Text className="flex-grow-1 text-light small">{recipe}</Card.Text>
             </>
           }
           {account.accountId ? 

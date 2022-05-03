@@ -15,12 +15,16 @@ const App = function AppWrapper() {
     }
   });
 
+  useEffect(() => { 
+    document.body.style.backgroundColor = 'black' 
+  }, []) 
+
   useEffect(() => {
     getBalance();
   }, [getBalance]);
 
   return (
-    <div style={{ backgroundColor: "black", height: "100vh" }}>
+    <>
       <Notification />
       <Container fluid="md">
         <Nav className="justify-content-end pt-3 pb-5">
@@ -39,7 +43,7 @@ const App = function AppWrapper() {
         </Nav>
         <main>{<Cocktails />}</main>
       </Container>
-    </div>
+    </>
   );
 };
 

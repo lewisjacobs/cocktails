@@ -134,7 +134,7 @@ const AddProduct = ({ save }) => {
               handleClose();
             }}
           >
-            Save product
+            Save
           </Button>
         </Modal.Footer>
       </Modal>
