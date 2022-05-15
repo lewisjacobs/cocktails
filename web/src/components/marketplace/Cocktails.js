@@ -93,28 +93,13 @@ const Cocktails = () => {
         <>
             {!loading ? (
                 <>
-                    <div className="d-flex justify-content-between align-items-center mb-4">
+                    <div className="d-flex justify-content-between align-items-center" style={{ margin: "0px 10px" }}>
                         <h1 className="fs-4 fw-bold mb-0 text-light">Cocktails</h1>
-                        <input 
-                            style={{ 
-                                height: "40px", 
-                                width: "80%",
-                                border: "none",
-                                outline: "none",
-                                padding: "5px",
-                                backgroundColor: "black",
-                                color: "white",
-                                borderBottom: "1px solid white",
-                                margin: "0px 15px"
-                            }} 
-                            placeholder="search cocktails ..."
-                            onChange={(e) => setSearch(e.target.value)}
-                        />
+                        {account.accountId === "lewisjacobs.testnet" && <AddCocktail save={addCocktail} />}
                         <Dropdown>
                             <Dropdown.Toggle variant="dark" bg="dark">
                                 Sort
                             </Dropdown.Toggle>
-
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={() => {
                                     setSort("nameAsc")
@@ -124,7 +109,23 @@ const Cocktails = () => {
                                 }}>Name [Z-A]</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-                        {account.accountId === "lewisjacobs.testnet" && <AddCocktail save={addCocktail} />}
+                    </div>
+                    <div className="d-flex justify-content-between align-items-center mb-4">
+                        <input 
+                            style={{ 
+                                height: "50px",
+                                width: "100%",
+                                border: "none",
+                                outline: "none",
+                                padding: "5px",
+                                backgroundColor: "black",
+                                color: "white",
+                                borderBottom: "1px solid white",
+                                margin: "0px 10px"
+                            }} 
+                            placeholder="search cocktails ..."
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
                     </div>
                     <Row xs={2} sm={2} lg={3} xl={4} className="g-3  mb-5 g-xl-4 g-xxl-5">
                         {

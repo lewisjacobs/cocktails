@@ -45,12 +45,6 @@ const Cocktail = ({ cocktail, buy }) => {
         <Card.Header style={{ padding: isMobileResolution ? "5px 10px" : "10px", textAlign: "center" }}>
           <Stack direction="horizontal" gap={1}>
             <span className={`text-light ${isMobileResolution ? "small" : "h6"}`} style={{ marginBottom: "2px" }}>{name}</span>
-            {
-              !isMobileResolution && 
-              <Badge bg="secondary" className="ms-auto">
-                {sold} sold
-              </Badge>
-            }
           </Stack>
         </Card.Header>
         <div className=" ratio ratio-4x3">
