@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
 
-const AddProduct = ({ save }) => {
+const AddCocktail = ({ save }) => {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [decoration, setDecoration] = useState("");
@@ -142,8 +142,8 @@ const AddProduct = ({ save }) => {
   );
 };
 
-AddProduct.propTypes = {
+AddCocktail.propTypes = {
   save: PropTypes.func.isRequired,
 };
 
-export default AddProduct;
+export default AddCocktail;

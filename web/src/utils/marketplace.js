@@ -6,7 +6,7 @@ const GAS = 100000000000000;
 export function createCocktail(cocktail) {
   cocktail.id = uuid4();
   cocktail.price = parseNearAmount(cocktail.price + "");
-  return window.contract.setCocktail({ cocktail });
+  return window.contract.createCocktail({ cocktail });
 }
 
 export function getCocktails() {

@@ -98,13 +98,14 @@ const Cocktails = () => {
                         <input 
                             style={{ 
                                 height: "40px", 
-                                width: "calc(100% - 300px)",
+                                width: "80%",
                                 border: "none",
                                 outline: "none",
                                 padding: "5px",
                                 backgroundColor: "black",
                                 color: "white",
-                                borderBottom: "1px solid white"
+                                borderBottom: "1px solid white",
+                                margin: "0px 15px"
                             }} 
                             placeholder="search cocktails ..."
                             onChange={(e) => setSearch(e.target.value)}
@@ -123,9 +124,9 @@ const Cocktails = () => {
                                 }}>Name [Z-A]</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-                        {account.accountId && <AddCocktail save={addCocktail} />}
+                        {account.accountId === "lewisjacobs.testnet" && <AddCocktail save={addCocktail} />}
                     </div>
-                    <Row xs={1} sm={2} lg={3} xl={4} className="g-3  mb-5 g-xl-4 g-xxl-5">
+                    <Row xs={2} sm={2} lg={3} xl={4} className="g-3  mb-5 g-xl-4 g-xxl-5">
                         {
                             cocktails.filter((c) => applySearch(c)).map((c) => <Cocktail cocktail={c} buy={buy}/>)
                         }

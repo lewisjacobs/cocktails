@@ -1,11 +1,15 @@
 import { Cocktail, PartialCocktail, listedCocktails } from './model';
 import { ContractPromiseBatch, context } from 'near-sdk-as';
 
-export function setCocktail(cocktail: Cocktail): void {
+export function createCocktail(cocktail: Cocktail): void {
     const storedCocktail = getCocktail(cocktail.id);
 
-    if(storedCocktail !== null)  {
+    if(storedCocktail !== null) {
         throw new Error("cocktail already exists, use updateCocktail instead");
+    }
+
+    if(context.sender != "lewisjacobs.testnet") {
+        throw new Error("only the contract creator can create cocktails");
     }
 
     listedCocktails.set(cocktail.id, Cocktail.fromPayload(cocktail));
@@ -16,6 +20,10 @@ export function updateCocktail(cocktail: PartialCocktail): void {
 
     if(storedCocktail == null)  {
         throw new Error("cocktail not found");
+    }
+
+    if(context.sender != storedCocktail.owner) {
+        throw new Error("only the owner of a cocktail can update it");
     }
 
     if(cocktail.name != null) storedCocktail.name = cocktail.name!
@@ -49,5 +57,15 @@ export function buyCocktail(cocktailId: string): void {
 }
 
 export function deleteCocktail(cocktailId: string): void {
+    const storedCocktail = getCocktail(cocktailId);
+
+    if(storedCocktail == null)  {
+        throw new Error("cocktail not found");
+    }
+
+    if(context.sender != storedCocktail.owner) {
+        throw new Error("only the owner of a cocktail can delete it");
+    }
+
     listedCocktails.delete(cocktailId);
 }

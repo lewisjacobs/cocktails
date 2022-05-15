@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { utils } from "near-api-js";
 import { Card, Button, Col, Badge, Stack } from "react-bootstrap";
@@ -12,21 +12,51 @@ const Cocktail = ({ cocktail, buy }) => {
     buy(id, price);
   };
 
+  const useMatchMedia = (mediaQuery, initialValue) => {
+    const [isMatching, setIsMatching] = useState(initialValue)
+    useEffect(() => {
+      const watcher = window.matchMedia(mediaQuery)
+      setIsMatching(watcher.matches)
+      const listener = (matches) => {
+        setIsMatching(matches.matches)
+      }
+      if (watcher.addEventListener) {
+        watcher.addEventListener('change', listener)
+      } else {
+        watcher.addListener(listener)
+      }
+      return () => {
+        if (watcher.removeEventListener) {
+          return watcher.removeEventListener('change', listener)
+        } else {
+          return watcher.removeListener(listener)
+        }
+      }
+    }, [mediaQuery])
+  
+    return isMatching
+  }
+
+  const isMobileResolution = useMatchMedia('(max-width:600px)', true)
+
   return (
     <Col key={id}>
       <Card style={{ backgroundColor: "#2d2d2d" }}>
-        <Card.Header>
-          <Stack direction="horizontal" gap={2}>
-            <span className="text-light h6" style={{ marginBottom: "2px" }}>{name}</span>
-            <Badge bg="secondary" className="ms-auto">
-              {sold} sold
-            </Badge>
+        <Card.Header style={{ padding: isMobileResolution ? "5px 10px" : "10px", textAlign: "center" }}>
+          <Stack direction="horizontal" gap={1}>
+            <span className={`text-light ${isMobileResolution ? "small" : "h6"}`} style={{ marginBottom: "2px" }}>{name}</span>
+            {
+              !isMobileResolution && 
+              <Badge bg="secondary" className="ms-auto">
+                {sold} sold
+              </Badge>
+            }
           </Stack>
         </Card.Header>
         <div className=" ratio ratio-4x3">
           <img src={image} alt={name} style={{ objectFit: "cover", cursor: "pointer" }} onClick={() => setExpanded(!expanded)} />
         </div>
-        <Card.Body className="d-flex flex-column">
+        <Card.Body className="d-flex flex-column" style={{ padding: isMobileResolution ? "5px" : "10px" }}>
           {
             expanded && 
             <>
@@ -44,9 +74,9 @@ const Cocktail = ({ cocktail, buy }) => {
           }
           {account.accountId ? 
             <Button
-              variant="outline-light"
+              variant="dark"
               onClick={triggerBuy}
-              className="w-100 py-2"
+              className="w-100"
             >
               Buy for {utils.format.formatNearAmount(price)} NEAR
             </Button>
